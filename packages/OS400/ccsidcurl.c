@@ -403,11 +403,11 @@ curl_version_info_data *
 curl_version_info_ccsid(CURLversion stamp, unsigned int ccsid)
 
 {
-  curl_version_info_data * p;
+  curl_version_info_data *p;
   char *cp;
   int n;
   int nproto;
-  curl_version_info_data * id;
+  curl_version_info_data *id;
 
   /* The assertion below is possible, because although the second operand
      is an enum member, the first is a #define. In that case, the OS/400 C
@@ -620,7 +620,7 @@ curl_easy_getinfo_ccsid(CURL *curl, CURLINFO info, ...)
   va_list arg;
   void *paramp;
   CURLcode ret;
-  struct Curl_easy * data;
+  struct Curl_easy *data;
 
   /* WARNING: unlike curl_easy_getinfo(), the strings returned by this
      procedure have to be free'ed. */
@@ -735,7 +735,7 @@ Curl_is_formadd_string(CURLformoption option)
 
 
 static void
-Curl_formadd_release_local(struct curl_forms * forms, int nargs, int skip)
+Curl_formadd_release_local(struct curl_forms *forms, int nargs, int skip)
 
 {
   while(nargs--)
@@ -749,7 +749,7 @@ Curl_formadd_release_local(struct curl_forms * forms, int nargs, int skip)
 
 
 static int
-Curl_formadd_convert(struct curl_forms * forms,
+Curl_formadd_convert(struct curl_forms *forms,
                      int formx, int lengthx, unsigned int ccsid)
 
 {
@@ -800,9 +800,9 @@ curl_formadd_ccsid(struct curl_httppost * * httppost,
   va_list arg;
   CURLformoption option;
   CURLFORMcode result;
-  struct curl_forms * forms;
-  struct curl_forms * lforms;
-  struct curl_forms * tforms;
+  struct curl_forms *forms;
+  struct curl_forms *lforms;
+  struct curl_forms *tforms;
   unsigned int lformlen;
   const char *value;
   unsigned int ccsid;
@@ -1066,18 +1066,18 @@ curl_formadd_ccsid(struct curl_httppost * * httppost,
 }
 
 
-typedef struct {
+struct cfcdata {
   curl_formget_callback append;
   void *                arg;
   unsigned int          ccsid;
-}   cfcdata;
+};
 
 
 static size_t
 Curl_formget_callback_ccsid(void *arg, const char *buf, size_t len)
 
 {
-  cfcdata * p;
+  struct cfcdata *p;
   char *b;
   int l;
   size_t ret;
